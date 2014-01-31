@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{c727727b-a917-4f18-ba37-f885201da061}</ProjectGuid>
+    <ProjectGuid>{C727727B-A917-4F18-BA37-F885201DA061}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Win8RSSFun</RootNamespace>
@@ -14,9 +14,7 @@
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    
     <PackageCertificateKeyFile>Win8RSSFun_TemporaryKey.pfx</PackageCertificateKeyFile>
-    
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -110,9 +108,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ItemsPage.xaml.cs">
-      <DependentUpon>ItemsPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SplitPage.xaml.cs">
       <DependentUpon>SplitPage.xaml</DependentUpon>
     </Compile>
@@ -128,10 +123,8 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="Common\ReadMe.txt" />
-    
     <None Include="Win8RSSFun_TemporaryKey.pfx" />
-    
-    <Content Include="DataModel\SampleData.json"/>
+    <Content Include="DataModel\SampleData.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Logo.scale-100.png" />
@@ -147,10 +140,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="ItemsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="SplitPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
