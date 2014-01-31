@@ -24,13 +24,13 @@ But that is in the RoadMap.
 	 - Button to load a rss feed from the url.
 	   
 #### Provide a button for the user to load the list of item from the rss url.
-     X Implementation
+     * Implementation
 #### Provide a List of items, to show the rss list loaded from the url.
-     X Implementation
+     * Implementation
 #### Provide a webView element to show web content for a url.
-     X Implementation
+     * Implementation
 #### When a user select an item the WebView will update the content from the url attribute in the selected item.
-     X Implementation
+     * Implementation
 #### Provide a button that change the content in the WebView, 
      The change has to present a compact version of a page with only content (title, content, img).
-     X Implementation
+     * Implementation
