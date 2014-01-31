@@ -1,0 +1,70 @@
+﻿<Page
+    x:Name="pageRoot"
+    x:Class="Win8RSSFun.AddRss"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Win8RSSFun"
+    xmlns:common="using:Win8RSSFun.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
+        <x:String x:Key="AppName">My Application</x:String>
+    </Page.Resources>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton x:Name="SaveRssFeed" Label="Save" Icon="SaveLocal"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <!--
+        This grid acts as a root panel for the page that defines two rows:
+        * Row 0 contains the back button and page title
+        * Row 1 contains the rest of the page layout
+    -->
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="64*"/>
+            <RowDefinition Height="69*"/>
+            <RowDefinition Height="431*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Back button and page title -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+                        Style="{StaticResource NavigationBackButtonNormalStyle}"
+                        VerticalAlignment="Top"
+                        AutomationProperties.Name="Back"
+                        AutomationProperties.AutomationId="BackButton"
+                        AutomationProperties.ItemType="Navigation Button"/>
+            <TextBlock x:Name="pageTitle" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40" Text="Add Rss Feed"/>
+        </Grid>
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Name: " Margin="15,0,0,5" Style="{StaticResource BaseTextBlockStyle}" Height="22" VerticalAlignment="Top"></TextBlock>
+            <TextBox x:Name="rssName" Margin="50,0,150,0"/>
+        </StackPanel>
+        <StackPanel x:Name="rssDescription" Grid.Row="2" Grid.RowSpan="3">
+            <TextBlock Text="Description: " Margin="15,0,0,5" Style="{StaticResource BaseTextBlockStyle}" Height="22" VerticalAlignment="Top"></TextBlock>
+            <TextBox Margin="50,0,150,0"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.RowSpan="3">
+            <TextBlock Text="Url: " x:Name="rssUrl" Margin="15,0,0,5" Style="{StaticResource BaseTextBlockStyle}" Height="22" VerticalAlignment="Top"></TextBlock>
+            <TextBox Margin="50,0,150,0"/>
+        </StackPanel>
+    </Grid>
+</Page>
