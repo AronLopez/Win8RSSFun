@@ -79,8 +79,7 @@ namespace Win8RSSFun
         /// session.  The state will be null the first time a page is visited.</param>
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            var group = await SampleDataSource.GetGroupAsync((String)e.NavigationParameter);
-            this.DefaultViewModel["Group"] = group;
+            var group = await SampleDataSource.GetFirstGroup();
             this.DefaultViewModel["Items"] = group.Items;
 
             if (e.PageState == null)

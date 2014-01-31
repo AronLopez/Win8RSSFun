@@ -106,6 +106,15 @@ namespace Win8RSSFun.Data
             return null;
         }
 
+        public static async Task<SampleDataGroup> GetFirstGroup()
+        {
+            await _sampleDataSource.GetSampleDataAsync();
+            // Simple linear search is acceptable for small data sets
+            var match = _sampleDataSource.Groups.First();
+            if (match != null) return match;
+            return null;
+        }
+
         public static async Task<SampleDataItem> GetItemAsync(string uniqueId)
         {
             await _sampleDataSource.GetSampleDataAsync();
