@@ -32,7 +32,7 @@ namespace Win8RSSFun.DataModel
             set { pubDate = value; }
         }
 
-        private List<FeedItem> items;
+        private List<FeedItem> items = new List<FeedItem>();
 
         public List<FeedItem> Items
         {

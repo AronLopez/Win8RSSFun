@@ -17,7 +17,18 @@
             x:Name="itemsViewSource"
             Source="{Binding Items}"
             d:Source="{Binding Groups[0].Items, Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}"/>
+        <CollectionViewSource
+            x:Name="itemsViewSource2"
+            IsSourceGrouped="True"
+            ItemsPath="Items"
+            Source="{Binding Feeds}"/>
+
     </Page.Resources>
+    <Page.TopAppBar>
+        <CommandBar>
+            <AppBarButton Label="Add Rss Feed" Icon="Add" Click="AddRSS_Click"/>
+        </CommandBar>
+    </Page.TopAppBar>
 
     <!--
         This grid acts as a root panel for the page that defines two rows:
@@ -38,8 +49,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="primaryColumn" Width="420"/>
-            <ColumnDefinition x:Name="secondaryColumn" Width="*"/>
+            <ColumnDefinition x:Name="primaryColumn" Width="324"/>
+            <ColumnDefinition x:Name="secondaryColumn"/>
         </Grid.ColumnDefinitions>
 
         <!-- Back button and page title -->
@@ -54,7 +65,7 @@
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
-            <TextBlock x:Name="pageTitle" Text="{Binding Title}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+            <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,0,40"/>
         </Grid>
 
@@ -65,9 +76,9 @@
             AutomationProperties.Name="Items"
             TabIndex="1"
             Grid.Row="1"
-            Margin="-10,8,0,0"
-            Padding="120,0,0,60"
-            ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
+            Margin="0,8,0,0"
+            Padding="20,0,0,60"
+            ItemsSource="{Binding Source={StaticResource itemsViewSource2}}"
             IsSwipeEnabled="False"
             SelectionChanged="ItemListView_SelectionChanged">
             <ListView.ItemTemplate>
@@ -81,8 +92,8 @@
                             <Image Source="{Binding ImagePath}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                         </Border>
                         <StackPanel Grid.Column="1" Margin="10,0,0,0">
-                            <TextBlock Text="{Binding Title}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="NoWrap" MaxHeight="40"/>
-                            <TextBlock Text="{Binding Subtitle}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>
+                            <TextBlock Text="{Binding Title}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="NoWrap" MaxHeight="40" FontFamily="Global User Interface"/>
+                            <TextBlock Text="{Binding Description}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
@@ -92,18 +103,22 @@
                     <Setter Property="Margin" Value="0,0,0,10"/>
                 </Style>
             </ListView.ItemContainerStyle>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Title}" Foreground="DimGray" Margin="5" Style="{StaticResource SubheaderTextBlockStyle}" />
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
         </ListView>
-        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Margin="10,0,0,0" VerticalAlignment="Center" Height="40" >
-            <TextBlock Text="Url: " Style="{StaticResource BodyTextBlockStyle}" Margin="0" VerticalAlignment="Top"/>
-            <TextBox x:Name="sourceUrl" Height="30" Margin="10,0,0,0" Width="745" VerticalAlignment="Top"/>
-            <Button Content="Go" VerticalAlignment="Top" Margin="10,-3,0,4"/>
-        </StackPanel>
         <!-- Details for selected item -->
         <ScrollViewer
             x:Name="itemDetail"
             AutomationProperties.AutomationId="ItemDetailScrollViewer"
             Grid.Column="1"
-            Grid.Row="2"
+            Grid.RowSpan="2"
             Padding="10,0,66,0"
             DataContext="{Binding SelectedItem, ElementName=itemListView}"
             d:DataContext="{Binding Groups[0].Items[0], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}"

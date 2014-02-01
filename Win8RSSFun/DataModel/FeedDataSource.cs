@@ -10,7 +10,7 @@ namespace Win8RSSFun.DataModel
 {
     public class FeedDataSource
     {
-        public ObservableCollection<FeedData> _feeds = new ObservableCollection<FeedData>();
+        private ObservableCollection<FeedData> _feeds = new ObservableCollection<FeedData>();
         public ObservableCollection<FeedData> Feeds
         {
             get
@@ -93,6 +93,7 @@ namespace Win8RSSFun.DataModel
                 return null;
             }
         }
+
         public static FeedData GetFeed(string title)
         {
             var _feedDataSource = App.Current.Resources["feedDataSource"] as FeedDataSource;

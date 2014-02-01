@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Win8RSSFun.DataModel;
 
 // The Split Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234234
 
@@ -81,6 +82,10 @@ namespace Win8RSSFun
         {
             var group = await SampleDataSource.GetFirstGroup();
             this.DefaultViewModel["Items"] = group.Items;
+            
+            FeedDataSource ds = new FeedDataSource();
+            await ds.GetFeedsAsync();
+            this.defaultViewModel["Feeds"] = ds.Feeds;
 
             if (e.PageState == null)
             {
@@ -245,5 +250,15 @@ namespace Win8RSSFun
         }
 
         #endregion
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddRSS_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(AddRss));
+        }
     }
 }
