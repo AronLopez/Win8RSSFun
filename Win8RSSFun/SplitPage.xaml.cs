@@ -260,5 +260,10 @@ namespace Win8RSSFun
         {
             this.Frame.Navigate(typeof(AddRss));
         }
+
+        private void WebView_LoadCompleted(object sender, NavigationEventArgs e)
+        {
+
+        }
     }
 }
